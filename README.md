@@ -99,11 +99,14 @@ Optional overrides: `DB_USER` (default `root`) and `DB_NAME` (default `aqms`).
 
 ## Deploying to Render
 
+Render has no native Java runtime, so the backend is deployed as a Docker
+image using the `Dockerfile` in this folder.
+
 1. Push this folder to its own GitHub repository.
 2. On [Render](https://render.com/), create a **Web Service** from that repo.
-3. Build command: `mvn clean package -DskipTests`
-4. Start command: `java -jar target/backend.jar`
-5. Add the environment variables listed above under the service's
+3. Set **Language / Runtime** to **Docker**. Render finds the `Dockerfile`
+   automatically, so there is no build or start command to enter.
+4. Add the environment variables listed above under the service's
    **Environment** tab (Render injects `PORT` automatically — the app
    already reads it).
 6. Once deployed, note the service URL (e.g.
