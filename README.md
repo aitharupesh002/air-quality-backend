@@ -61,6 +61,22 @@ Example request body for `POST`/`PUT`:
 
 `category` and `recordedAt` are computed by the server — you don't send them.
 
+## Running against MySQL installed on your laptop
+
+If you have MySQL 8 installed locally (MySQL Installer on Windows), use the
+`local` profile. The `aqms` database is created automatically on first run.
+
+PowerShell:
+
+```powershell
+$env:DB_PASSWORD = "your-mysql-root-password"
+mvn spring-boot:run "-Dspring-boot.run.profiles=local"
+```
+
+Command Prompt / macOS / Linux equivalents work the same way: set
+`DB_PASSWORD`, then run `mvn spring-boot:run -Dspring-boot.run.profiles=local`.
+Optional overrides: `DB_USER` (default `root`) and `DB_NAME` (default `aqms`).
+
 ## Running against MySQL (Aiven) instead of H2
 
 1. Create a free MySQL service on [Aiven](https://aiven.io/) and open its
