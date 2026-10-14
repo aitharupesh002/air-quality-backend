@@ -46,6 +46,14 @@ in-memory database (JDBC URL: `jdbc:h2:mem:aqms`, user `sa`, no password).
 | PUT    | `/api/records/{id}`    | Update a record                   |
 | DELETE | `/api/records/{id}`    | Delete a record                   |
 | GET    | `/api/health`          | Health check                      |
+| GET    | `/api/live?lat=&lon=`  | Live air quality for coordinates (not saved) |
+| GET    | `/api/live/search?city=` | Live air quality for a city name (not saved) |
+
+The two `/api/live` endpoints call the free [Open-Meteo](https://open-meteo.com/)
+air quality and geocoding APIs. No API key is needed for non-commercial use.
+The air quality values are CAMS ENSEMBLE model estimates (US AQI scale), not
+readings from a ground sensor. The frontend shows the result and saves it
+through the normal `POST /api/records` endpoint.
 
 Example request body for `POST`/`PUT`:
 
